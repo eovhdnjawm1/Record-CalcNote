@@ -11,15 +11,10 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
   background-color: #e7e7e7;
 `;
 const SubContainer = styled.div`
   width: 80%;
-  height: 80%;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   min-width: 1050px;
   background-color: #ddd8d8;
   display: grid;

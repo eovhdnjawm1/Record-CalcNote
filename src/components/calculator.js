@@ -25,7 +25,7 @@ const ButtonWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
-  width: 40%;
+  /* width: 40%; */
   max-width: 500px;
   height: 30%;
 `;
