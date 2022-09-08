@@ -108,7 +108,7 @@ function Memo() {
     document.addEventListener("mousemove", onMove);
   }, []);
 
-  const [nowFontSize, setNowFontSize] = useState("");
+  const [nowFontSize, setNowFontSize] = useState("24px");
 
   const handleChange = (e) => {
     console.log(e.target.value);

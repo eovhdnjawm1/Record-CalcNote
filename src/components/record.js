@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Clock from "react-live-clock";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  useRecoilRefresher_UNSTABLE,
+  useRecoilValue,
+  useSetRecoilState,
+} from "recoil";
 import { categoryState, recordSelector, recordState } from "../atoms";
 import { useForm } from "react-hook-form";
 import RecordItem from "./recordItem";
@@ -42,8 +46,9 @@ const SubContainer = styled.div`
     font-size: 20px;
   }
 
-  form .recordButton {
-    width: 100%;
+  form .recordButton,
+  .clearRecord {
+    width: 30%;
     padding: 15px;
     margin: 15px 0;
     border-radius: 8px;
@@ -56,7 +61,26 @@ const SubContainer = styled.div`
     }
   }
 
+  form .recordButton {
+    width: 100%;
+  }
+
   .recordBoard {
+  }
+
+  form {
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttonSet {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
   }
 `;
 
@@ -86,9 +110,6 @@ function RecordCom() {
 
   const currentTimer = () => {
     const date = new Date();
-    // const year = String(date.getFullYear()).padStart(2, "0");
-    // const month = String(date.getMonth() + 1).padStart(2,"0");
-    // const day = String(date.getDay()).padStart(2,"0");
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
     const seconds = String(date.getSeconds()).padStart(2, "0");
@@ -104,8 +125,6 @@ function RecordCom() {
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
     const seconds = String(date.getSeconds()).padStart(2, "0");
-    // setTimeRecord((`${hours}:${minutes}:${seconds}`));
-    // return React.createElement("li", null, timeRecord);
     setRecord((oldRecord) => [
       {
         id: Date.now(),
@@ -115,6 +134,11 @@ function RecordCom() {
     ]);
   };
 
+  const RecordClear = () => {
+    setRecord((oldRecord) => {
+      return [...(oldRecord = [])];
+    });
+  };
   startTimer();
 
   return (
@@ -128,10 +152,15 @@ function RecordCom() {
           timezone={"Asia/Seoul"}
         />
         <div className="timer">{timer}</div>
-        <form onSubmit={handleSubmit(Record)}>
-          <div className="timerText">Timer Record </div>
-          <button className="recordButton">Record</button>
-        </form>
+        <div className="timerText">Timer Record </div>
+        <div className="buttonSet">
+          <form onSubmit={handleSubmit(Record)}>
+            <button className="recordButton">Record</button>
+          </form>
+          <button onClick={RecordClear} className="clearRecord">
+            Clear
+          </button>
+        </div>
       </SubContainer>
       <RecordList>
         {records?.map((record, i) => (
