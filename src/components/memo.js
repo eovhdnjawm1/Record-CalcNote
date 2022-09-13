@@ -29,9 +29,10 @@ const Wrap = styled.div`
   border: 1px solid #c0c0a4;
   box-sizing: border-box;
   width: 100%;
+  height: 100%;
 
   & select {
-    width: 6%;
+    width: 15%;
     height: 30px;
     margin-left: 10px;
     font-size: 16px;
@@ -50,14 +51,14 @@ const Header = styled.div`
 
 const Content = styled.div`
   width: 100%;
-  height: 400px;
+  height: 93%;
   overflow-x: auto;
   overflow-y: auto;
 
   textarea {
     width: 100%;
     padding: 15px;
-    height: 400px;
+    height: 100%;
     box-sizing: border-box;
     background: none;
     outline: none;
@@ -111,7 +112,6 @@ function Memo() {
   const [nowFontSize, setNowFontSize] = useState("24px");
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setNowFontSize(e.target.value);
   };
 
@@ -136,7 +136,8 @@ function Memo() {
         <textarea
           style={{ fontSize: `${nowFontSize}` }}
           placeholder="please your write...
-          When the record button is pressed, the time is recorded."
+          When the record button is pressed,
+          the time is recorded."
           onBlur={onFocusout}
         ></textarea>
       </Content>

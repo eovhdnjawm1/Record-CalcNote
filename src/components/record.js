@@ -94,6 +94,24 @@ const RecordList = styled(SubContainer)`
   align-items: center;
   overflow-y: auto;
 
+  & span:first-child::before {
+    content: "new";
+    font-size: 15px;
+    top: 0;
+    left: 0;
+    color: red;
+    opacity: 0.5;
+  }
+
+  & span:last-child::before {
+    content: "first";
+    font-size: 15px;
+    top: 0;
+    left: 0;
+    color: red;
+    opacity: 0.5;
+  }
+
   @media (max-width: 1400px) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, 1fr);

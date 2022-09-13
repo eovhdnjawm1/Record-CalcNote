@@ -21,15 +21,6 @@ const Container = styled.div`
   }
 `;
 
-const ButtonWrap = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  /* width: 40%; */
-  max-width: 500px;
-  height: 30%;
-`;
-
 const Card = styled.button`
   background-color: #f2f3f5;
   color: black;
@@ -41,8 +32,22 @@ const Card = styled.button`
 
   &:active {
     margin-left: 2px;
-    margin-top: 2px;
-    box-shadow: none;
+
+    box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const ButtonWrap = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  /* width: 40%; */
+  max-width: 500px;
+  height: 30%;
+
+  .delKey:active {
+    margin-left: 0;
+    box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -124,25 +129,16 @@ function Calc() {
     setPointCheck(true);
     setCalc((prev) => "");
   };
-  const handleKeyPress = (e) => {
-    const value = e.target.value;
-    console.log(e.target.value);
-    switch (value) {
-      case "0":
-        console.log("하이");
-        break;
-      default:
-        return;
-    }
-  };
 
   return (
     <Container>
       <div>
-        <InputCard readOnly value={calc} onKeyDown={handleKeyPress} />
+        <InputCard readOnly value={calc} />
         <ButtonWrap>
           <Card onClick={allClear}>AC</Card>
-          <Card onClick={delCalc}>DEL</Card>
+          <Card className="delKey" onClick={delCalc}>
+            DEL
+          </Card>
           <CalCard onClick={getOper} value="%">
             %
           </CalCard>
