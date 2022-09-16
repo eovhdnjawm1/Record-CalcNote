@@ -5,13 +5,15 @@ import NavBar from "./components/Nav";
 import "./App.css";
 import CalendarCom from "./components/calendar";
 import RecordCom from "./components/record";
+import { useEffect } from "react";
 
 const Container = styled.div`
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  background-color: #e7e7e7;
+  width: 70vw;
+  /* background-color: #e7e7e7; */
 `;
 const SubContainer = styled.div`
   width: 80%;
@@ -47,9 +49,37 @@ const SubContainer = styled.div`
   }
 `;
 function App() {
+  useEffect(() => {
+    let ins = document.createElement("ins");
+    let scr = document.createElement("script");
+    ins.className = "kakao_ad_area";
+    ins.style = "display:none; width:100%;";
+    scr.async = "true";
+    scr.type = "text/javascript";
+    scr.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+    ins.setAttribute("data-ad-width", "160");
+    ins.setAttribute("data-ad-height", "600");
+    ins.setAttribute("data-ad-unit", "DAN-vWrAWfZEQNvsqnSC");
+    document.querySelector(".adfit").appendChild(ins);
+    document.querySelector(".adfit").appendChild(scr);
+
+    let ins2 = document.createElement("ins");
+    let scr2 = document.createElement("script");
+    ins2.className = "kakao_ad_area";
+    ins2.style = "display:none; width:100%;";
+    scr2.async = "true";
+    scr2.type = "text/javascript";
+    scr2.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+    ins2.setAttribute("data-ad-width", "160");
+    ins2.setAttribute("data-ad-height", "600");
+    ins2.setAttribute("data-ad-unit", "DAN-2tAVtd1caBEelCEU");
+    document.querySelector(".adfit2").appendChild(ins2);
+    document.querySelector(".adfit2").appendChild(scr2);
+  }, []);
   return (
     <>
       <Container className="App">
+        <div className="adfit2"></div>
         <SubContainer>
           <article>
             <Memo />
@@ -64,6 +94,7 @@ function App() {
             <CalendarCom />
           </article>
         </SubContainer>
+        <div className="adfit"></div>
       </Container>
     </>
   );
